@@ -34,6 +34,7 @@
     bottom: 0;
     opacity: 0;
   }
+
   to {
     bottom: 30px;
     opacity: 1;
@@ -45,6 +46,7 @@
     bottom: 0;
     opacity: 0;
   }
+
   to {
     bottom: 30px;
     opacity: 1;
@@ -56,6 +58,7 @@
     bottom: 30px;
     opacity: 1;
   }
+
   to {
     bottom: 0;
     opacity: 0;
@@ -67,6 +70,7 @@
     bottom: 30px;
     opacity: 1;
   }
+
   to {
     bottom: 0;
     opacity: 0;
@@ -83,7 +87,7 @@ body {
   font-family: 'Times New Roman', Times, serif;
 }
 
-.container { 
+.container {
   position: absolute;
   left: 40%;
   right: 40%;
@@ -108,4 +112,10 @@ body {
   z-index: 2;
   pointer-events: none;
   opacity: 0.8;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
