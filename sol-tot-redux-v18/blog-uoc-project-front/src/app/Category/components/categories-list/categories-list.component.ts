@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import * as CategoriesAction from '../../actions';
 import { CategoryDTO } from '../../models/category.dto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-categories-list',
@@ -12,6 +13,7 @@ import { CategoryDTO } from '../../models/category.dto';
 })
 export class CategoriesListComponent {
   categories: CategoryDTO[] = [];
+  loading$: Observable<boolean>;
   displayedColumns: string[] = ['id', 'title', 'description', 'css_color', 'actions'];
 
   private userId: string = '';
@@ -26,6 +28,7 @@ export class CategoriesListComponent {
     this.store.select('categories').subscribe((categories) => {
       this.categories = categories.categories;
     });
+    this.loading$ = this.store.select((state: any) => state.categories.loading);
   }
 
   private loadCategories(): void {

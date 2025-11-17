@@ -1,0 +1,25 @@
+.container { 
+  position: absolute;
+  padding-top: 1em;
+  margin-left: 1em;
+}
+
+.elems-container {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.spinner-overlay {
+  background-color: lightgrey;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.8;
+}

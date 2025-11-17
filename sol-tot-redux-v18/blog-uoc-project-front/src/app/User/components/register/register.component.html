@@ -5,7 +5,7 @@
 <div class="container">
   <h1>Register</h1>
 
-  <form [formGroup]="registerForm" (ngSubmit)="register()">
+  <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-container">
     <!-- Name -->
     <div>
       <section>
@@ -158,4 +158,7 @@
       <button mat-raised-button color="primary" type="submit">Register</button>
     </section>
   </form>
+</div>
+<div *ngIf="loading$ | async" class="spinner-overlay">
+  <mat-spinner diameter="100"></mat-spinner>
 </div>

@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import * as PostsAction from '../../actions';
 import { PostDTO } from '../../models/post.dto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-posts-list',
@@ -13,6 +14,7 @@ import { PostDTO } from '../../models/post.dto';
 export class PostsListComponent {
   posts: PostDTO[] = [];
   private userId: string = '';
+  loading$: Observable<boolean>;
   displayedColumns: string[] = ['id', 'title', 'description', 'num_likes', 'num_dislikes', 'actions'];
 
 
@@ -27,6 +29,8 @@ export class PostsListComponent {
     this.store.select('posts').subscribe((posts) => {
       this.posts = posts.posts;
     });
+
+    this.loading$ = this.store.select((state: any) => state.posts.loading);
   }
 
   private loadPosts(): void {

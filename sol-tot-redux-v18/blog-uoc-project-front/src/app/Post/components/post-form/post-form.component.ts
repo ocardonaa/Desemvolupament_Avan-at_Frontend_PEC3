@@ -13,6 +13,7 @@ import { CategoryDTO } from 'src/app/Category/models/category.dto';
 import * as CategoriesAction from '../../../Category/actions';
 import * as PostsAction from '../../actions';
 import { PostDTO } from '../../models/post.dto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post-form',
@@ -30,6 +31,8 @@ export class PostFormComponent implements OnInit {
 
   postForm: FormGroup;
   isValidForm: boolean | null = null;
+
+  loading$: Observable<boolean>;
 
   private isUpdateMode = false;
   private postId: string | null;
@@ -109,6 +112,8 @@ export class PostFormComponent implements OnInit {
         });
       }
     });
+
+    this.loading$ = this.store.select((state: any) => state.posts.loading);
   }
 
   private loadCategories(): void {

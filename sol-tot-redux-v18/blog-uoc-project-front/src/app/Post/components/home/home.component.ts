@@ -6,6 +6,7 @@ import { SharedService } from 'src/app/Shared/Services/shared.service';
 import * as PostsAction from '../../actions';
 import { PostDTO } from '../../models/post.dto';
 import { PostService } from '../../services/post.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,8 @@ export class HomeComponent {
   showButtons: boolean;
 
   private userId: string;
+
+  loading$: Observable<boolean>;
 
   constructor(
     private postService: PostService,
@@ -41,6 +44,9 @@ export class HomeComponent {
     this.store.select('posts').subscribe((posts) => {
       this.posts = posts.posts;
     });
+
+    this.loading$ = this.store.select((state: any) => state.posts.loading);
+
   }
 
   ngOnInit(): void {

@@ -1,4 +1,11 @@
-<div *ngIf="posts">
-  <p>Num likes: {{ numLikes }}</p>
-  <p>Num dislikes: {{ numDislikes }}</p>
+<div class="container">
+  <div class="elems-container">
+    <div *ngIf="posts">
+      <p>Num likes: {{ numLikes }}</p>
+      <p>Num dislikes: {{ numDislikes }}</p>
+    </div>
+  </div>
+</div>
+<div *ngIf="loading$ | async" class="spinner-overlay">
+  <mat-spinner diameter="100"></mat-spinner>
 </div>

@@ -5,7 +5,7 @@
 <div class="container">
   <h1>Post form</h1>
 
-  <form [formGroup]="postForm" (ngSubmit)="savePost()">
+  <form [formGroup]="postForm" (ngSubmit)="savePost()" class="form-container">
     <!-- Title -->
     <div>
       <section>
@@ -83,4 +83,7 @@
       <button mat-raised-button color="primary" type="submit">Save</button>
     </section>
   </form>
+</div>
+<div *ngIf="loading$ | async" class="spinner-overlay">
+  <mat-spinner diameter="100"></mat-spinner>
 </div>

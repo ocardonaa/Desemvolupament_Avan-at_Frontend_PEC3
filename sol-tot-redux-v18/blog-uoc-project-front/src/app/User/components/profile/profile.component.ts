@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import * as UserAction from '../../actions';
 import { UserDTO } from '../../models/user.dto';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -30,6 +31,8 @@ export class ProfileComponent implements OnInit {
   isValidForm: boolean | null;
 
   private userId: string = '';
+
+  loading$: Observable<boolean>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -112,6 +115,9 @@ export class ProfileComponent implements OnInit {
         });
       }
     });
+
+    this.loading$ = this.store.select((state: any) => state.user.loading);
+
   }
 
   ngOnInit(): void {
@@ -119,9 +125,9 @@ export class ProfileComponent implements OnInit {
       this.store.dispatch(UserAction.getUserById({ userId: this.userId }));
     }
   }
-  
+
   getError(): string | any {
-    if(this.password.hasError('required')) {
+    if (this.password.hasError('required')) {
       return 'You must enter a password';
     }
   }

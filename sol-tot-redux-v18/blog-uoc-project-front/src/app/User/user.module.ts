@@ -6,9 +6,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [RegisterComponent, ProfileComponent],
-  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatButtonModule],
+  imports: [CommonModule, ReactiveFormsModule, MatProgressSpinnerModule, MatInputModule, MatFormFieldModule, MatButtonModule],
 })
 export class UserModule {}

@@ -1,34 +1,40 @@
-<h2>Post List</h2>
-<button (click)="createPost()">ADD</button>
-
-<table mat-table [dataSource]="posts">
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let post"> {{ post.postId }} </td>
-  </ng-container>
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef> TITLE </th>
-    <td mat-cell *matCellDef="let post"> {{ post.title }} </td>
-  </ng-container>
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef> DESCRIPTION </th>
-    <td mat-cell *matCellDef="let post"> {{ post.description }} </td>
-  </ng-container>
-  <ng-container matColumnDef="num_likes">
-    <th mat-header-cell *matHeaderCellDef> LIKES </th>
-    <td mat-cell *matCellDef="let post"> {{ post.num_likes }} </td>
-  </ng-container>
-  <ng-container matColumnDef="num_dislikes">
-    <th mat-header-cell *matHeaderCellDef> DISLIKES </th>
-    <td mat-cell *matCellDef="let post"> {{ post.num_dislikes }} </td>
-  </ng-container>
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
-    <td mat-cell *matCellDef="let post">
-      <button mat-raised-button color="basic" (click)="updatePost(post.postId)">UPDATE</button>
-      <button mat-raised-button color="warn" (click)="deletePost(post.postId)">DELETE</button>
-    </td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<div class="container">
+  <div class="list-container">
+    <h2>Post List</h2>
+    <button (click)="createPost()">ADD</button>
+    <table mat-table [dataSource]="posts">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let post"> {{ post.postId }} </td>
+      </ng-container>
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> TITLE </th>
+        <td mat-cell *matCellDef="let post"> {{ post.title }} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> DESCRIPTION </th>
+        <td mat-cell *matCellDef="let post"> {{ post.description }} </td>
+      </ng-container>
+      <ng-container matColumnDef="num_likes">
+        <th mat-header-cell *matHeaderCellDef> LIKES </th>
+        <td mat-cell *matCellDef="let post"> {{ post.num_likes }} </td>
+      </ng-container>
+      <ng-container matColumnDef="num_dislikes">
+        <th mat-header-cell *matHeaderCellDef> DISLIKES </th>
+        <td mat-cell *matCellDef="let post"> {{ post.num_dislikes }} </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
+        <td mat-cell *matCellDef="let post">
+          <button mat-raised-button color="basic" (click)="updatePost(post.postId)">UPDATE</button>
+          <button mat-raised-button color="warn" (click)="deletePost(post.postId)">DELETE</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
+<div *ngIf="loading$ | async" class="spinner-overlay">
+  <mat-spinner diameter="100"></mat-spinner>
+</div>

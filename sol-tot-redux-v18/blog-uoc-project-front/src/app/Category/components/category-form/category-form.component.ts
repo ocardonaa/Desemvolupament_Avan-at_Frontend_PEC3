@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import * as CategoriesAction from '../../actions';
 import { CategoryDTO } from '../../models/category.dto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-category-form',
@@ -24,6 +25,8 @@ export class CategoryFormComponent implements OnInit {
 
   categoryForm: FormGroup;
   isValidForm: boolean | null = null;
+
+  loading$: Observable<boolean>;
 
   private isUpdateMode: boolean = false;
   private categoryId: string | null;
@@ -75,6 +78,9 @@ export class CategoryFormComponent implements OnInit {
         });
       }
     });
+
+    this.loading$ = this.store.select((state: any) => state.categories.loading);
+
   }
 
   ngOnInit(): void {

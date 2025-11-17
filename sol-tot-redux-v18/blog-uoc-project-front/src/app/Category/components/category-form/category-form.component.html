@@ -5,7 +5,7 @@
 <div class="container">
   <h1>Category form</h1>
 
-  <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+  <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()" class="form-container">
     <!-- Title -->
     <div>
       <section>
@@ -72,4 +72,7 @@
       <button mat-raised-button color="primary" type="submit">Save</button>
     </section>
   </form>
+</div>
+<div *ngIf="loading$ | async" class="spinner-overlay">
+  <mat-spinner diameter="100"></mat-spinner>
 </div>

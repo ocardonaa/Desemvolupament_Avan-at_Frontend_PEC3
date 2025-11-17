@@ -1,0 +1,26 @@
+.container { 
+  position: absolute;
+  left: 40%;
+  right: 40%;
+}
+
+.list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em;
+  z-index: 1;
+}
+
+.spinner-overlay {
+  background-color: lightgrey;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.8;
+}

@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import * as PostsAction from '../../actions';
 import { PostDTO } from '../../models/post.dto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +14,8 @@ export class DashboardComponent implements OnInit {
   posts: PostDTO[];
   numLikes: number;
   numDislikes: number;
+  loading$: Observable<boolean>;
+
 
   constructor(private store: Store<AppState>) {
     this.posts = new Array<PostDTO>();
@@ -28,6 +31,9 @@ export class DashboardComponent implements OnInit {
         this.numDislikes = this.numDislikes + post.num_dislikes;
       });
     });
+
+    this.loading$ = this.store.select((state: any) => state.posts.loading);
+
   }
 
   ngOnInit(): void {
