@@ -2,14 +2,21 @@
   <p id="postFeedback"></p>
 </div>
 
-<div>
+<div class="container">
   <h1>Post form</h1>
 
   <form [formGroup]="postForm" (ngSubmit)="savePost()">
     <!-- Title -->
     <div>
-      <label for="title">Title:</label>
-      <input id="title" type="text" formControlName="title" />
+      <section>
+        <mat-form-field appearance="fill">
+          <mat-label>Title:</mat-label>
+          <input matInput type="text" [formControl]="title" required>
+          <mat-error *ngIf="title.hasError('maxlength') && !title.hasError('required')">Please
+            enter a valid title</mat-error>
+          <mat-error *ngIf="title.hasError('required')">Field title is required</mat-error>
+        </mat-form-field>
+      </section>
 
       <div *ngIf="title.invalid && isValidForm === false" class="error">
         <div *ngIf="title.errors?.['required']">Title is required</div>
@@ -21,8 +28,15 @@
 
     <!-- Description -->
     <div>
-      <label for="description">Description:</label>
-      <input id="description" type="text" formControlName="description" />
+      <section>
+        <mat-form-field appearance="fill">
+          <mat-label>Description:</mat-label>
+          <input matInput type="text" [formControl]="description" required>
+          <mat-error *ngIf="description.hasError('maxlength') && !description.hasError('required')">Please
+            enter a valid description</mat-error>
+          <mat-error *ngIf="description.hasError('required')">Field description is required</mat-error>
+        </mat-form-field>
+      </section>
 
       <div *ngIf="description.invalid && isValidForm === false" class="error">
         <div *ngIf="description.errors?.['required']">
@@ -36,16 +50,14 @@
 
     <!-- Publication date -->
     <div>
-      <label for="publicationDate">Publication date: </label>
-      <input
-        id="publicationDate"
-        type="date"
-        formControlName="publication_date"
-      />
-      <div
-        *ngIf="publication_date.invalid && isValidForm === false"
-        class="error"
-      >
+      <section>
+        <mat-form-field appearance="fill">
+          <mat-label>Publication date:</mat-label>
+          <input matInput type="date" [formControl]="publication_date" required>
+          <mat-error *ngIf="publication_date.hasError('required')">Field birth date is required</mat-error>
+        </mat-form-field>
+      </section>
+      <div *ngIf="publication_date.invalid && isValidForm === false" class="error">
         <div *ngIf="publication_date.errors?.['required']">
           Publication date is required
         </div>
@@ -54,17 +66,21 @@
 
     <!-- Categories -->
     <div>
-      <label for="categories">Choose categories:</label>
-      <select id="categories" multiple formControlName="categories">
-        <option
-          *ngFor="let category of categoriesList"
-          [ngValue]="category.categoryId"
-        >
-          {{ category.title }}
-        </option>
-      </select>
+      <section>
+        <mat-form-field appearance="fill">
+          <mat-label>Choose categories:</mat-label>
+          <mat-select id="categories" multiple formControlName="categories">
+            <mat-option *ngFor="let category of categoriesList" [value]="category.categoryId">
+              {{ category.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </section>
+
     </div>
 
-    <button type="submit">SAVE</button>
+    <section>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </section>
   </form>
 </div>

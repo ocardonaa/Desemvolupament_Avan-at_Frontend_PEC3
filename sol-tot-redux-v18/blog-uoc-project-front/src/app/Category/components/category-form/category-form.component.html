@@ -2,14 +2,21 @@
   <p id="categoryFeedback"></p>
 </div>
 
-<div>
+<div class="container">
   <h1>Category form</h1>
 
   <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
     <!-- Title -->
     <div>
-      <label for="title">Title:</label>
-      <input id="title" type="text" formControlName="title" />
+      <section>
+        <mat-form-field appearance="fill">
+          <mat-label>Title:</mat-label>
+          <input matInput type="text" [formControl]="title" required>
+          <mat-error *ngIf="title.hasError('maxlength') && !title.hasError('required')">Please
+            enter a valid title</mat-error>
+          <mat-error *ngIf="title.hasError('required')">Field title is required</mat-error>
+        </mat-form-field>
+      </section>
 
       <div *ngIf="title.invalid && isValidForm === false" class="error">
         <div *ngIf="title.errors?.['required']">Title is required</div>
@@ -21,8 +28,15 @@
 
     <!-- Description -->
     <div>
-      <label for="description">Description:</label>
-      <input id="description" type="text" formControlName="description" />
+      <section>
+        <mat-form-field appearance="fill">
+          <mat-label>Description:</mat-label>
+          <input matInput type="text" [formControl]="description" required>
+          <mat-error *ngIf="description.hasError('maxlength') && !description.hasError('required')">Please
+            enter a valid title</mat-error>
+          <mat-error *ngIf="description.hasError('required')">Field description is required</mat-error>
+        </mat-form-field>
+      </section>
 
       <div *ngIf="description.invalid && isValidForm === false" class="error">
         <div *ngIf="description.errors?.['required']">
@@ -36,8 +50,15 @@
 
     <!-- Css color -->
     <div>
-      <label for="cssColor">Css color:</label>
-      <input id="cssColor" type="text" formControlName="css_color" />
+      <section>
+        <mat-form-field appearance="fill">
+          <mat-label>Css color:</mat-label>
+          <input matInput type="text" [formControl]="css_color" required>
+          <mat-error *ngIf="css_color.hasError('maxlength') && !css_color.hasError('required')">Please
+            enter a valid css color</mat-error>
+          <mat-error *ngIf="css_color.hasError('required')">Field css color is required</mat-error>
+        </mat-form-field>
+      </section>
 
       <div *ngIf="css_color.invalid && isValidForm === false" class="error">
         <div *ngIf="css_color.errors?.['required']">Css color is required</div>
@@ -47,6 +68,8 @@
       </div>
     </div>
 
-    <button type="submit">SAVE</button>
+    <section>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </section>
   </form>
 </div>

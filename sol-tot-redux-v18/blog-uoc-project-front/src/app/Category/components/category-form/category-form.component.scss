@@ -34,6 +34,7 @@
     bottom: 0;
     opacity: 0;
   }
+
   to {
     bottom: 30px;
     opacity: 1;
@@ -45,6 +46,7 @@
     bottom: 0;
     opacity: 0;
   }
+
   to {
     bottom: 30px;
     opacity: 1;
@@ -56,6 +58,7 @@
     bottom: 30px;
     opacity: 1;
   }
+
   to {
     bottom: 0;
     opacity: 0;
@@ -67,8 +70,27 @@
     bottom: 30px;
     opacity: 1;
   }
+
   to {
     bottom: 0;
     opacity: 0;
   }
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em;
 }
