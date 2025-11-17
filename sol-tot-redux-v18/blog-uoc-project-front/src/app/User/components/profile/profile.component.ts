@@ -119,6 +119,12 @@ export class ProfileComponent implements OnInit {
       this.store.dispatch(UserAction.getUserById({ userId: this.userId }));
     }
   }
+  
+  getError(): string | any {
+    if(this.password.hasError('required')) {
+      return 'You must enter a password';
+    }
+  }
 
   updateUser(): void {
     this.isValidForm = false;

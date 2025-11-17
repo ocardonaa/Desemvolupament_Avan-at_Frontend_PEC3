@@ -38,6 +38,12 @@ export class LoginComponent {
     });
   }
 
+  getError(): string | any {
+    if(this.password.hasError('required')) {
+      return 'You must enter a password';
+    }
+  }
+
   login(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();

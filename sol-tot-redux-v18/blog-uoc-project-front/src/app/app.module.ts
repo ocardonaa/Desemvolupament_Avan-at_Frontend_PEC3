@@ -16,8 +16,14 @@ import { FooterComponent } from './Shared/Components/footer/footer.component';
 import { HeaderComponent } from './Shared/Components/header/header.component';
 import { AuthInterceptorService } from './Shared/Services/auth-interceptor.service';
 import { UserModule } from './User/user.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 
-@NgModule({ declarations: [AppComponent, HeaderComponent, FooterComponent],
+
+@NgModule({
+    declarations: [AppComponent, HeaderComponent, FooterComponent],
     bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
@@ -25,6 +31,9 @@ import { UserModule } from './User/user.module';
         UserModule,
         CategoryModule,
         PostModule,
+        MatInputModule,
+        MatButtonModule,
+        MatFormFieldModule,
         StoreModule.forRoot(appReducers, {
             runtimeChecks: {
                 strictStateImmutability: false,
@@ -36,11 +45,13 @@ import { UserModule } from './User/user.module';
             maxAge: 25,
             logOnly: environment.production,
         })], providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptorService,
-            multi: true,
-        },
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
-export class AppModule {}
+            {
+                provide: HTTP_INTERCEPTORS,
+                useClass: AuthInterceptorService,
+                multi: true,
+            },
+            provideHttpClient(withInterceptorsFromDi()),
+            provideAnimationsAsync(),
+        ]
+})
+export class AppModule { }

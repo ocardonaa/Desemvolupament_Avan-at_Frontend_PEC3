@@ -74,6 +74,7 @@ export class RegisterComponent {
     this.password = new FormControl(this.registerUser.password, [
       Validators.required,
       Validators.minLength(8),
+      Validators.maxLength(16),
     ]);
 
     this.registerForm = this.formBuilder.group({
@@ -85,6 +86,12 @@ export class RegisterComponent {
       email: this.email,
       password: this.password,
     });
+  }
+
+  getError(): string | any {
+    if(this.password.hasError('required')) {
+      return 'You must enter a password';
+    }
   }
 
   register(): void {
