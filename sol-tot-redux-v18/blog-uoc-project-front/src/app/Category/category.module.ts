@@ -6,9 +6,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { CategoriesListComponent } from './components/categories-list/categories-list.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [CategoriesListComponent, CategoryFormComponent],
-  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule],
+  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule],
 })
-export class CategoryModule {}
+export class CategoryModule { }

@@ -13,6 +13,8 @@ import { PostDTO } from '../../models/post.dto';
 export class PostsListComponent {
   posts: PostDTO[] = [];
   private userId: string = '';
+  displayedColumns: string[] = ['id', 'title', 'description', 'num_likes', 'num_dislikes', 'actions'];
+
 
   constructor(private router: Router, private store: Store<AppState>) {
     this.store.select('auth').subscribe((auth) => {

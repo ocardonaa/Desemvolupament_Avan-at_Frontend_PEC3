@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { PostsListComponent } from './components/posts-list/posts-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -19,6 +20,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     FormatDatePipe,
     DashboardComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, MatSelectModule, MatButtonModule, MatFormFieldModule, MatInputModule],
+  imports: [CommonModule, ReactiveFormsModule, MatTableModule, MatSelectModule, MatButtonModule, MatFormFieldModule, MatInputModule],
 })
 export class PostModule { }
