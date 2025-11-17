@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         MatProgressSpinnerModule,
         MatButtonModule,
         MatToolbarModule,
+        BrowserAnimationsModule,
         MatFormFieldModule,
         StoreModule.forRoot(appReducers, {
             runtimeChecks: {

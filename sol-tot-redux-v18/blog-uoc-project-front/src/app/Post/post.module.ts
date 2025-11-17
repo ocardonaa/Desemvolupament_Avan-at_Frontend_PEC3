@@ -12,6 +12,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { PostsListComponent } from './components/posts-list/posts-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MatCardModule } from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     FormatDatePipe,
     DashboardComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, MatProgressSpinnerModule, MatTableModule, MatSelectModule, MatButtonModule, MatFormFieldModule, MatInputModule],
+  imports: [CommonModule, ReactiveFormsModule, BrowserAnimationsModule, MatProgressSpinnerModule, MatCardModule, MatTableModule, MatSelectModule, MatButtonModule, MatFormFieldModule, MatInputModule],
 })
 export class PostModule { }

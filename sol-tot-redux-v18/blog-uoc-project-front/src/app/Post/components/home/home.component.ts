@@ -7,11 +7,24 @@ import * as PostsAction from '../../actions';
 import { PostDTO } from '../../models/post.dto';
 import { PostService } from '../../services/post.service';
 import { Observable } from 'rxjs';
+import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  animations: [
+    trigger('listAnimation', [
+      transition('* => *', [
+        query(':enter', [
+          style({ opacity: 0 }),
+          stagger(300, [
+            animate('0.5s', style({ opacity: 1 }))
+          ])
+        ])
+      ])
+    ])
+  ]
 })
 export class HomeComponent {
   posts: PostDTO[];

@@ -14,6 +14,7 @@
 
 .category-container {
   padding: 2px 16px;
+  margin-bottom: 1em;
 }
 
 .badge {
@@ -48,4 +49,21 @@
   z-index: 2;
   pointer-events: none;
   opacity: 0.8;
+}
+
+.cards-container {
+  text-align: center;
+}
+
+mat-card-header {
+  display: block;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mat-success {
+  color: #155724
 }

@@ -1,23 +1,23 @@
-<p>header works!</p>
+
 
 <!-- NO AUTH REQUIRED -->
-<mat-toolbar *ngIf="showNoAuthSection">
+<mat-toolbar *ngIf="showNoAuthSection" class="toolbar-container">
   <mat-toolbar-row>
-    <button mat-raised-button color="basic" (click)="dashboard()">Dashboard</button>
-    <button mat-raised-button color="basic" (click)="home()">Home</button>
-    <button mat-raised-button color="basic" (click)="login()">Login</button>
-    <button mat-raised-button color="basic" (click)="register()">Register</button>
+    <button mat-raised-button color="primary" (click)="dashboard()">Dashboard</button>
+    <button mat-raised-button color="primary" (click)="home()">Home</button>
+    <button mat-raised-button color="primary" (click)="login()">Login</button>
+    <button mat-raised-button color="primary" (click)="register()">Register</button>
   </mat-toolbar-row>
 </mat-toolbar>
 
 <!-- AUTH REQUIRED -->
-<mat-toolbar *ngIf="showAuthSection">
+<mat-toolbar *ngIf="showAuthSection" class="toolbar-container">
   <mat-toolbar-row>
-    <button mat-raised-button color="basic" (click)="dashboard()">Dashboard</button>
-    <button mat-raised-button color="basic" (click)="home()">Home</button>
-    <button mat-raised-button color="basic" (click)="adminPosts()">Admin posts</button>
-    <button mat-raised-button color="basic" (click)="adminCategories()">Admin categories</button>
-    <button mat-raised-button color="basic" (click)="profile()">Profile</button>
-    <button mat-raised-button color="basic" (click)="logout()">Logout</button>
+    <button mat-raised-button color="primary" (click)="dashboard()">Dashboard</button>
+    <button mat-raised-button color="primary" (click)="home()">Home</button>
+    <button mat-raised-button color="primary" (click)="adminPosts()">Admin posts</button>
+    <button mat-raised-button color="primary" (click)="adminCategories()">Admin categories</button>
+    <button mat-raised-button color="primary" (click)="profile()">Profile</button>
+    <button mat-raised-button color="primary" (click)="logout()">Logout</button>
   </mat-toolbar-row>
 </mat-toolbar>
