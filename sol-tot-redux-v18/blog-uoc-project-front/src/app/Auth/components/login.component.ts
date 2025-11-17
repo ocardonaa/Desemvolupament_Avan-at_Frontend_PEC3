@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import * as AuthAction from '../actions';
 import { AuthDTO } from '../models/auth.dto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -19,12 +20,14 @@ export class LoginComponent {
   email: FormControl;
   password: FormControl;
   loginForm: FormGroup;
+  loading$: Observable<boolean>;
 
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<AppState>
   ) {
     this.email = new FormControl('', [Validators.required, Validators.email]);
+    this.loading$ = this.store.select((state: any) => state.auth.loading);
 
     this.password = new FormControl('', [
       Validators.required,

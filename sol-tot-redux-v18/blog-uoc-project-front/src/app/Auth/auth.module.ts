@@ -5,9 +5,10 @@ import { LoginComponent } from './components/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [LoginComponent],
-  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatButtonModule],
+  imports: [CommonModule, ReactiveFormsModule, MatProgressSpinnerModule, MatInputModule, MatFormFieldModule, MatButtonModule],
 })
-export class AuthModule {}
+export class AuthModule { }

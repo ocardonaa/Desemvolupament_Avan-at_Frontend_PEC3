@@ -20,6 +20,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { MatButtonModule } from '@angular/material/button';
         CategoryModule,
         PostModule,
         MatInputModule,
+        MatProgressSpinnerModule,
         MatButtonModule,
         MatFormFieldModule,
         StoreModule.forRoot(appReducers, {

@@ -3,7 +3,7 @@
 </div>
 <div class="container">
   <h1>Login</h1>
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="form-container">
     <section>
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
@@ -37,4 +37,7 @@
       <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
     </section>
   </form>
+</div>
+<div *ngIf="loading$ | async" class="spinner-overlay">
+  <mat-spinner diameter="100"></mat-spinner>
 </div>
