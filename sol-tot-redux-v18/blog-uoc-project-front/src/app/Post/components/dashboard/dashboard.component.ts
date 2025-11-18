@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   numLikes: number;
   numDislikes: number;
   loading$: Observable<boolean>;
-
+  chart: {} | undefined;
 
   constructor(private store: Store<AppState>) {
     this.posts = new Array<PostDTO>();
@@ -30,6 +30,20 @@ export class DashboardComponent implements OnInit {
         this.numLikes = this.numLikes + post.num_likes;
         this.numDislikes = this.numDislikes + post.num_dislikes;
       });
+
+      this.chart = {
+        animationEnabled: true,
+        title: {
+          text: "Likes and Dislikes"
+        },
+        data: [{
+          type: "column",
+          dataPoints: [
+            { label: "Likes", y: this.numLikes },
+            { label: "Dislikes", y: this.numDislikes }
+          ]
+        }]
+      };
     });
 
     this.loading$ = this.store.select((state: any) => state.posts.loading);

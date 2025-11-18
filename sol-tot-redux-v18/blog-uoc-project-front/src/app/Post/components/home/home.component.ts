@@ -14,7 +14,7 @@ import { trigger, style, transition, animate, query, stagger } from '@angular/an
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
-    trigger('listAnimation', [
+    trigger('cardsFadeIn', [
       transition('* => *', [
         query(':enter', [
           style({ opacity: 0 }),

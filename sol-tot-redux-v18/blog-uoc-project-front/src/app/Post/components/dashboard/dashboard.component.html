@@ -1,8 +1,7 @@
 <div class="container">
   <div class="elems-container">
-    <div *ngIf="posts">
-      <p>Num likes: {{ numLikes }}</p>
-      <p>Num dislikes: {{ numDislikes }}</p>
+    <div>
+      <canvasjs-chart [options]="chart"></canvasjs-chart>
     </div>
   </div>
 </div>

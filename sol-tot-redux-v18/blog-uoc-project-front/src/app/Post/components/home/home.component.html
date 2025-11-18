@@ -1,6 +1,6 @@
 <div class="container">
   <div class="elems-container">
-    <div class="cards-container" [@listAnimation] *ngIf="posts.length > 0">
+    <div class="cards-container" [@cardsFadeIn] *ngIf="posts.length > 0">
       <div *ngFor="let post of posts" class="card">
         <mat-card appearance="outlined">
           <mat-card-header>
