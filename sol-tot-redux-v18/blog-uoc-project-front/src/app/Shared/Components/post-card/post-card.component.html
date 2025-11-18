@@ -1,0 +1,28 @@
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <div class="category-container">
+            <div>
+                <span *ngFor="let category of item.categories" class="badge"
+                    [ngStyle]="{ 'background-color': category.css_color }">
+                    {{ category.title }}
+                </span>
+            </div>
+        </div>
+        <h4>
+            <b>Title: {{ item.title }}</b>
+        </h4>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Description: {{ item.description }}</p>
+        <p>Likes: {{ item.num_likes }}</p>
+        <p>Dislikes: {{ item.num_dislikes }}</p>
+        <p>Publication date: {{ item.publication_date | formatDate: 3 }}</p>
+        <p>Published by: {{ item.userAlias }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <div *ngIf="showButtons" class="buttons-container">
+            <button mat-raised-button class="mat-success" (click)="onLike()">Like</button>
+            <button mat-raised-button color="warn" (click)="onDislike()">Dislike</button>
+        </div>
+    </mat-card-actions>
+</mat-card>

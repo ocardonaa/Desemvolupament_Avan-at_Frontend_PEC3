@@ -70,6 +70,14 @@ export class HomeComponent {
     this.store.dispatch(PostsAction.getPosts());
   }
 
+  onPostLiked(postId: string) {
+    this.like(postId);
+  }
+
+  onPostDisliked(postId: string) {
+    this.dislike(postId);
+  }
+
   like(postId: string): void {
     let errorResponse: any;
 
