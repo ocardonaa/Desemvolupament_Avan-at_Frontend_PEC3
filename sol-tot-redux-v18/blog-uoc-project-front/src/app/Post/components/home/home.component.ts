@@ -21,11 +21,12 @@ import { trigger, style, transition, animate, query, stagger } from '@angular/an
           stagger(300, [
             animate('0.5s', style({ opacity: 1 }))
           ])
-        ])
+        ], { optional: true })
       ])
     ])
   ]
 })
+
 export class HomeComponent {
   posts: PostDTO[];
   showButtons: boolean;

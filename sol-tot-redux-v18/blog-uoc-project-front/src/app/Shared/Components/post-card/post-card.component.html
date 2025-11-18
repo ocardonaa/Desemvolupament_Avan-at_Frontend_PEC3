@@ -2,7 +2,7 @@
     <mat-card-header>
         <div class="category-container">
             <div>
-                <span *ngFor="let category of item.categories" class="badge"
+                <span *ngFor="let category of item.categories" matBadge="4" matBadgeOverlap="false"
                     [ngStyle]="{ 'background-color': category.css_color }">
                     {{ category.title }}
                 </span>
@@ -21,8 +21,14 @@
     </mat-card-content>
     <mat-card-actions>
         <div *ngIf="showButtons" class="buttons-container">
-            <button mat-raised-button class="mat-success" (click)="onLike()">Like</button>
-            <button mat-raised-button color="warn" (click)="onDislike()">Dislike</button>
+            <button mat-raised-button class="mat-success" (click)="onLike()">
+                <mat-icon>thumb_up</mat-icon>
+                Like
+            </button>
+            <button mat-raised-button color="warn" (click)="onDislike()">
+                <mat-icon>thumb_down</mat-icon>
+                Dislike
+            </button>
         </div>
     </mat-card-actions>
 </mat-card>

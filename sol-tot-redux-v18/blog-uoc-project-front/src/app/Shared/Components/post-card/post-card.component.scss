@@ -1,0 +1,17 @@
+.cards-container {
+  text-align: center;
+}
+
+mat-card-header {
+  display: block;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-success {
+  color: #155724
+}

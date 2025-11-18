@@ -2,7 +2,7 @@
   <div class="elems-container">
     <div class="cards-container" [@cardsFadeIn] *ngIf="posts.length > 0">
       <div class="card">
-        <app-post-card *ngFor="let post of posts" [item]="post" [showButtons]="true" (like)="onPostLiked($event)"
+        <app-post-card *ngFor="let post of posts" [item]="post" [showButtons]="showButtons" (like)="onPostLiked($event)"
           (dislike)="onPostDisliked($event)">
         </app-post-card>
       </div>
