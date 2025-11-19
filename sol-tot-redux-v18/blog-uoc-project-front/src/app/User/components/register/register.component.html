@@ -10,7 +10,7 @@
 <app-input-text 
   label="name" 
   [control]="name" 
-  placeholder="Enter your name">
+  [placeholder]="'Enter your name'">
 </app-input-text>
     <!-- Surname1 -->
     <div>
@@ -116,25 +116,11 @@
     </div>
 
     <!-- Password -->
-    <div>
-      <section>
-        <mat-form-field appearance="fill">
-          <mat-label>Enter your password</mat-label>
-          <input matInput type="password" [formControl]="password" required>
-          <mat-error *ngIf="password.invalid">{{ getError() }}</mat-error>
-        </mat-form-field>
-      </section>
-
-      <div *ngIf="password.invalid && isValidForm === false" class="error">
-        <div *ngIf="password.errors?.['required']">Password is required</div>
-        <div *ngIf="password.errors?.['minlength']">
-          Password must be at least 8 characters long.
-        </div>
-        <div *ngIf="password.errors?.['maxlength']">
-          Password must be maximum 16 characters long.
-        </div>
-      </div>
-    </div>
+    <app-input-password 
+  label="password" 
+  [control]="password" 
+  [placeholder]="'Enter your password'">
+</app-input-password>
 
     <section>
       <button mat-raised-button color="primary" type="submit">Register</button>
