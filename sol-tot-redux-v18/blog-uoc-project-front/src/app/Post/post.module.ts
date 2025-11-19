@@ -23,7 +23,6 @@ import { PostCardComponent } from '../Shared/Components/post-card/post-card.comp
     PostFormComponent,
     HomeComponent,
     DashboardComponent,
-
   ],
   imports: [CommonModule, FormatDatePipe, PostCardComponent, ReactiveFormsModule, CanvasJSAngularChartsModule, BrowserAnimationsModule, MatProgressSpinnerModule, MatCardModule, MatTableModule, MatSelectModule, MatButtonModule, MatFormFieldModule, MatInputModule],
 })

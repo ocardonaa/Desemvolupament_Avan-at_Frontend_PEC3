@@ -7,10 +7,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { InputTextComponent } from '../Shared/Components/form-controls/input-text/input-text.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
-  declarations: [RegisterComponent, ProfileComponent],
-  imports: [CommonModule, ReactiveFormsModule, MatProgressSpinnerModule, MatInputModule, MatFormFieldModule, MatButtonModule],
+  declarations: [RegisterComponent, ProfileComponent, InputTextComponent],
+  imports: [CommonModule, ReactiveFormsModule, MatProgressSpinnerModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatButtonModule,],
 })
-export class UserModule {}
+export class UserModule { }
