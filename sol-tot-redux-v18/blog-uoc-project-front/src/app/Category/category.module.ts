@@ -8,9 +8,10 @@ import { CategoriesListComponent } from './components/categories-list/categories
 import { CategoryFormComponent } from './components/category-form/category-form.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SharedModule } from '../Shared/shared.module';
 
 @NgModule({
   declarations: [CategoriesListComponent, CategoryFormComponent],
-  imports: [CommonModule, ReactiveFormsModule, MatProgressSpinnerModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule],
+  imports: [CommonModule, ReactiveFormsModule, MatProgressSpinnerModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, SharedModule],
 })
 export class CategoryModule { }

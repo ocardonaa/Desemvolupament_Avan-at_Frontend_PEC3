@@ -1,7 +1,7 @@
 <div class="container">
   <div class="list-container">
     <h2>Categories List</h2>
-    <button (click)="createCategory()">ADD</button>
+    <button mat-raised-button color="primary" (click)="createCategory()">ADD</button>
     <table mat-table [dataSource]="categories">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>

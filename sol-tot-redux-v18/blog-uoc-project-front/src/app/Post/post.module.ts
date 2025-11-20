@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { PostCardComponent } from '../Shared/Components/post-card/post-card.component';
+import { SharedModule } from '../Shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,6 @@ import { PostCardComponent } from '../Shared/Components/post-card/post-card.comp
     HomeComponent,
     DashboardComponent,
   ],
-  imports: [CommonModule, FormatDatePipe, PostCardComponent, ReactiveFormsModule, CanvasJSAngularChartsModule, BrowserAnimationsModule, MatProgressSpinnerModule, MatCardModule, MatTableModule, MatSelectModule, MatButtonModule, MatFormFieldModule, MatInputModule],
+  imports: [CommonModule, FormatDatePipe, PostCardComponent, ReactiveFormsModule, CanvasJSAngularChartsModule, BrowserAnimationsModule, MatProgressSpinnerModule, MatCardModule, MatTableModule, MatSelectModule, MatButtonModule, MatFormFieldModule, MatInputModule, SharedModule],
 })
 export class PostModule { }

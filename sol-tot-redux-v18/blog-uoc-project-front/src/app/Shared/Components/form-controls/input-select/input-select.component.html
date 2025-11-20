@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill">
+    <mat-label>Choose categories:</mat-label>
+    <mat-select id="categories" multiple [formControl]="control" [placeholder]="placeholder">
+        <mat-option *ngFor="let category of categories" [value]="category.categoryId">
+            {{ category.title }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
