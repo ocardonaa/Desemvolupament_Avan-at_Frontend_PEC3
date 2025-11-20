@@ -7,120 +7,32 @@
 
   <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-container">
     <!-- Name -->
-<app-input-text 
-  label="name" 
-  [control]="name" 
-  [placeholder]="'Enter your name'">
-</app-input-text>
-    <!-- Surname1 -->
-    <div>
-      <section>
-        <mat-form-field appearance="fill">
-          <mat-label>Enter your first surname</mat-label>
-          <input matInput type="text" [formControl]="surname_1" required>
-          <mat-error
-            *ngIf="(surname_1.hasError('minlength') || surname_1.hasError('maxlength')) && !surname_1.hasError('required')">Please
-            enter a valid first surname</mat-error>
-          <mat-error *ngIf="surname_1.hasError('required')">Field surname is required</mat-error>
-        </mat-form-field>
-      </section>
+    <app-input-text label="name" [control]="name" [placeholder]="'Enter your name'">
+    </app-input-text>
 
-      <div *ngIf="surname_1.invalid && isValidForm === false" class="error">
-        <div *ngIf="surname_1.errors?.['required']">Surname1 is required</div>
-        <div *ngIf="surname_1.errors?.['minlength']">
-          Surname1 must be at least 5 characters long.
-        </div>
-        <div *ngIf="surname_1.errors?.['maxlength']">
-          Surname1 can be max 25 characters long.
-        </div>
-      </div>
-    </div>
+    <!-- Surname1 -->
+    <app-input-text label="surname" [control]="surname_1" [placeholder]="'Enter your first surname'">
+    </app-input-text>
 
     <!-- Surname2 -->
-    <div>
-      <section>
-        <mat-form-field appearance="fill">
-          <mat-label>Enter your second surname</mat-label>
-          <input matInput type="text" [formControl]="surname_2">
-          <mat-error *ngIf="surname_2.hasError('minlength') || surname_2.hasError('maxlength')">Please enter a valid
-            first surname</mat-error>
-        </mat-form-field>
-      </section>
-      <div *ngIf="surname_2.invalid && isValidForm === false" class="error">
-        <div *ngIf="surname_2.errors?.['minlength']">
-          Surname2 must be at least 5 characters long.
-        </div>
-        <div *ngIf="surname_2.errors?.['maxlength']">
-          Surname2 can be max 25 characters long.
-        </div>
-      </div>
-    </div>
+    <app-input-text label="surname" [control]="surname_2" [placeholder]="'Enter your second surname'">
+    </app-input-text>
 
     <!-- Alias -->
-    <div>
-      <section>
-        <mat-form-field appearance="fill">
-          <mat-label>Enter your alias</mat-label>
-          <input matInput type="text" [formControl]="alias" required>
-          <mat-error
-            *ngIf="(alias.hasError('minlength') || alias.hasError('maxlength')) && !alias.hasError('required')">Please
-            enter a valid first surname</mat-error>
-          <mat-error *ngIf="alias.hasError('required')">Field alias is required</mat-error>
-        </mat-form-field>
-      </section>
-
-      <div *ngIf="alias.invalid && isValidForm === false" class="error">
-        <div *ngIf="alias.errors?.['required']">Alias is required</div>
-        <div *ngIf="alias.errors?.['minlength']">
-          Alias must be at least 5 characters long.
-        </div>
-        <div *ngIf="alias.errors?.['maxlength']">
-          Alias can be max 25 characters long.
-        </div>
-      </div>
-    </div>
+    <app-input-text label="alias" [control]="alias" [placeholder]="'Enter your alias'">
+    </app-input-text>
 
     <!-- Birth date -->
-    <div>
-      <section>
-        <mat-form-field appearance="fill">
-          <mat-label>Enter your birth date</mat-label>
-          <input matInput type="date" [formControl]="birth_date" required>
-          <mat-error *ngIf="birth_date.hasError('required')">Field birth date is required</mat-error>
-        </mat-form-field>
-      </section>
-
-      <div *ngIf="birth_date.invalid && isValidForm === false" class="error">
-        <div *ngIf="birth_date.errors?.['required']">
-          Birth date is required
-        </div>
-      </div>
-    </div>
+    <app-input-date label="birth" [control]="birth_date" [placeholder]="'Enter your birth date'">
+    </app-input-date>
 
     <!-- Email -->
-    <div>
-      <section>
-        <mat-form-field appearance="fill">
-          <mat-label>Enter your email</mat-label>
-          <input matInput type="email" [formControl]="email" required placeholder="example@email.com">
-          <mat-error *ngIf="email.hasError('email')&& !email.hasError('required')">Please enter a valid email
-            address</mat-error>
-          <mat-error *ngIf="email.hasError('required')">Field email is required</mat-error>
-        </mat-form-field>
-      </section>
-
-      <div *ngIf="email.invalid && isValidForm === false" class="error">
-        <div *ngIf="email.errors?.['required']">Email is required</div>
-        <div *ngIf="email.errors?.['email']">Email not a valid format.</div>
-      </div>
-    </div>
+    <app-input-email label="email" [control]="email" [placeholder]="'Enter your email'">
+    </app-input-email>
 
     <!-- Password -->
-    <app-input-password 
-  label="password" 
-  [control]="password" 
-  [placeholder]="'Enter your password'">
-</app-input-password>
+    <app-input-password label="password" [control]="password" [placeholder]="'Enter your password'">
+    </app-input-password>
 
     <section>
       <button mat-raised-button color="primary" type="submit">Register</button>
