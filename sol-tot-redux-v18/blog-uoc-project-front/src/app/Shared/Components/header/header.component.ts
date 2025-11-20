@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import * as AuthAction from '../../../Auth/actions';
+import { FeedbackService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,7 @@ import * as AuthAction from '../../../Auth/actions';
 export class HeaderComponent implements OnInit {
   showAuthSection: boolean;
   showNoAuthSection: boolean;
+  private feedbackService = inject(FeedbackService);
 
   constructor(private router: Router, private store: Store<AppState>) {
     this.showAuthSection = false;
@@ -59,6 +61,7 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.store.dispatch(AuthAction.logout());
+    this.feedbackService.showInfo('You logged out session');
     this.router.navigateByUrl('home');
   }
 }

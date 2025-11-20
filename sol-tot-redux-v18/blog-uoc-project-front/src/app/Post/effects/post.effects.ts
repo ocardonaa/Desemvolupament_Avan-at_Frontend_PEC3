@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -6,18 +6,20 @@ import { catchError, exhaustMap, finalize, map, tap } from 'rxjs/operators';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import * as PostActions from '../actions';
 import { PostService } from '../services/post.service';
+import { FeedbackService } from 'src/app/Shared/Services/notification.service';
 
 @Injectable()
 export class PostsEffects {
   private responseOK = false;
   private errorResponse: any = null;
+  private feedbackService = inject(FeedbackService);
 
   constructor(
     private actions$: Actions,
     private postService: PostService,
     private sharedService: SharedService,
     private router: Router
-  ) {}
+  ) { }
 
   // GET POSTS BY USER
   getPostsByUserId$ = createEffect(() =>
@@ -52,10 +54,14 @@ export class PostsEffects {
       ofType(PostActions.deletePost),
       exhaustMap(({ postId }) =>
         this.postService.deletePost(postId).pipe(
-          map(() => PostActions.deletePostSuccess({ postId })),
-          catchError((error) =>
-            of(PostActions.deletePostFailure({ payload: error }))
-          )
+          map(() => {
+            this.feedbackService.showInfo('Deleted post');
+            return PostActions.deletePostSuccess({ postId })
+          }),
+          catchError((error) => {
+            this.feedbackService.showFail('Something went wrong, post was not deleted');
+            return of(PostActions.deletePostFailure({ payload: error }))
+          })
         )
       )
     )
@@ -106,19 +112,19 @@ export class PostsEffects {
       ofType(PostActions.createPost),
       exhaustMap(({ post }) =>
         this.postService.createPost(post).pipe(
-          map((createdPost) =>
-            PostActions.createPostSuccess({ post: createdPost })
+          map((createdPost) => {
+            this.feedbackService.showSuccess('Succesfully created post');
+            return PostActions.createPostSuccess({ post: createdPost })
+          }
+
           ),
-          catchError((error) =>
-            of(PostActions.createPostFailure({ payload: error }))
+          catchError((error) => {
+            this.feedbackService.showFail('Something went wrong, post was not created');
+            return of(PostActions.createPostFailure({ payload: error }))
+          }
+
           ),
           finalize(async () => {
-            await this.sharedService.managementToast(
-              'postFeedback',
-              this.responseOK,
-              this.errorResponse
-            );
-
             if (this.responseOK) {
               this.router.navigateByUrl('posts');
             }
@@ -159,22 +165,22 @@ export class PostsEffects {
       ofType(PostActions.updatePost),
       exhaustMap(({ postId, post }) =>
         this.postService.updatePost(postId, post).pipe(
-          map((updatedPost) =>
-            PostActions.updatePostSuccess({
+          map((updatedPost) => {
+            this.feedbackService.showInfo('Updated post');
+            return PostActions.updatePostSuccess({
               postId,
               post: updatedPost,
             })
+          }
+
           ),
-          catchError((error) =>
-            of(PostActions.updatePostFailure({ payload: error }))
+          catchError((error) => {
+            this.feedbackService.showFail('Something went wrong, category was not updated');
+            return of(PostActions.updatePostFailure({ payload: error }))
+          }
+
           ),
           finalize(async () => {
-            await this.sharedService.managementToast(
-              'postFeedback',
-              this.responseOK,
-              this.errorResponse
-            );
-
             if (this.responseOK) {
               this.router.navigateByUrl('posts');
             }

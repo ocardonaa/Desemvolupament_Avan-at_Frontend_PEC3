@@ -13,11 +13,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputSelectComponent } from './Components/form-controls/input-select/input-select.component';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [InputEmailComponent, InputDateComponent, InputPasswordComponent, InputTextComponent, InputSelectComponent],
-  imports: [CommonModule, MatDatepickerModule, MatNativeDateModule, MatIcon, MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatSelectModule],
+  imports: [CommonModule, MatDatepickerModule, MatNativeDateModule, MatIcon, MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatSelectModule, MatCardModule],
   exports: [InputEmailComponent, InputDateComponent, InputPasswordComponent, InputTextComponent, InputSelectComponent]
 })
 export class SharedModule { }   

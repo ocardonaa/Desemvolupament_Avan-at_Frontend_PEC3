@@ -22,10 +22,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastComponent } from './Shared/Components/toast/toast.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
-    declarations: [AppComponent, HeaderComponent],
+    declarations: [AppComponent, HeaderComponent, ToastComponent],
     bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
@@ -37,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         MatProgressSpinnerModule,
         MatButtonModule,
         MatToolbarModule,
+        MatCardModule,
         BrowserAnimationsModule,
         MatFormFieldModule,
         StoreModule.forRoot(appReducers, {

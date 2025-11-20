@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -6,18 +6,21 @@ import { catchError, exhaustMap, finalize, map, tap } from 'rxjs/operators';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import * as CategoryActions from '../actions';
 import { CategoryService } from '../services/category.service';
+import { FeedbackService } from 'src/app/Shared/Services/notification.service';
 
 @Injectable()
 export class CategoriesEffects {
   private responseOK = false;
   private errorResponse: any = null;
+  private feedbackService = inject(FeedbackService);
+
 
   constructor(
     private actions$: Actions,
     private categoryService: CategoryService,
     private sharedService: SharedService,
     private router: Router
-  ) {}
+  ) { }
 
   // GET BY USER ID
   getCategoriesByUserId$ = createEffect(() =>
@@ -54,9 +57,15 @@ export class CategoriesEffects {
       ofType(CategoryActions.deleteCategory),
       exhaustMap(({ categoryId }) =>
         this.categoryService.deleteCategory(categoryId).pipe(
-          map(() => CategoryActions.deleteCategorySuccess({ categoryId })),
-          catchError((error) =>
-            of(CategoryActions.deleteCategoryFailure({ payload: error }))
+          map(() => {
+            this.feedbackService.showInfo('Deleted category');
+            return CategoryActions.deleteCategorySuccess({ categoryId })
+          }),
+          catchError((error) => {
+            this.feedbackService.showFail('Something went wrong, category was not deleted');
+            return of(CategoryActions.deleteCategoryFailure({ payload: error }))
+          }
+
           )
         )
       )
@@ -110,21 +119,19 @@ export class CategoriesEffects {
       ofType(CategoryActions.createCategory),
       exhaustMap(({ category }) =>
         this.categoryService.createCategory(category).pipe(
-          map((createdCategory) =>
-            CategoryActions.createCategorySuccess({
+          map((createdCategory) => {
+            this.feedbackService.showSuccess('Succesfully created category');
+            return CategoryActions.createCategorySuccess({
               category: createdCategory,
             })
-          ),
-          catchError((error) =>
-            of(CategoryActions.createCategoryFailure({ payload: error }))
+          }),
+          catchError((error) => {
+            this.feedbackService.showFail('Something went wrong, category was not created');
+            return of(CategoryActions.createCategoryFailure({ payload: error }))
+          }
+
           ),
           finalize(async () => {
-            await this.sharedService.managementToast(
-              'categoryFeedback',
-              this.responseOK,
-              this.errorResponse
-            );
-
             if (this.responseOK) {
               this.router.navigateByUrl('categories');
             }
@@ -165,22 +172,21 @@ export class CategoriesEffects {
       ofType(CategoryActions.updateCategory),
       exhaustMap(({ categoryId, category }) =>
         this.categoryService.updateCategory(categoryId, category).pipe(
-          map((updatedCategory) =>
-            CategoryActions.updateCategorySuccess({
+          map((updatedCategory) => {
+            this.feedbackService.showInfo('Updated category');
+            return CategoryActions.updateCategorySuccess({
               categoryId,
               category: updatedCategory,
             })
+          }
+
           ),
-          catchError((error) =>
-            of(CategoryActions.updateCategoryFailure({ payload: error }))
+          catchError((error) => {
+            this.feedbackService.showFail('Something went wrong, category was not updated');
+            return of(CategoryActions.updateCategoryFailure({ payload: error }))
+          }
           ),
           finalize(async () => {
-            await this.sharedService.managementToast(
-              'categoryFeedback',
-              this.responseOK,
-              this.errorResponse
-            );
-
             if (this.responseOK) {
               this.router.navigateByUrl('categories');
             }

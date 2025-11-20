@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -10,6 +10,7 @@ import { AppState } from 'src/app/app.reducers';
 import * as AuthAction from '../actions';
 import { AuthDTO } from '../models/auth.dto';
 import { Observable } from 'rxjs';
+import { FeedbackService } from 'src/app/Shared/Services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -39,12 +40,6 @@ export class LoginComponent {
       email: this.email,
       password: this.password,
     });
-  }
-
-  getError(): string | any {
-    if(this.password.hasError('required')) {
-      return 'You must enter a password';
-    }
   }
 
   login(): void {

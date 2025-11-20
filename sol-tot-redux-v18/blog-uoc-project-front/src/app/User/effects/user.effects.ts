@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -6,18 +6,20 @@ import { catchError, exhaustMap, finalize, map, tap } from 'rxjs/operators';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import * as UserActions from '../actions';
 import { UserService } from '../services/user.service';
+import { FeedbackService } from 'src/app/Shared/Services/notification.service';
 
 @Injectable()
 export class UserEffects {
   private responseOK = false;
   private errorResponse: any = null;
+  private feedbackService = inject(FeedbackService);
 
   constructor(
     private actions$: Actions,
     private userService: UserService,
     private router: Router,
     private sharedService: SharedService
-  ) {}
+  ) { }
 
   // REGISTER
   register$ = createEffect(() =>
@@ -25,19 +27,19 @@ export class UserEffects {
       ofType(UserActions.register),
       exhaustMap(({ user }) =>
         this.userService.register(user).pipe(
-          map((createdUser) =>
-            UserActions.registerSuccess({ user: createdUser })
+          map((createdUser) => {
+            this.feedbackService.showSuccess('Succesfully registered');
+            return UserActions.registerSuccess({ user: createdUser })
+          }
+
           ),
-          catchError((error) =>
-            of(UserActions.registerFailure({ payload: error }))
+          catchError((error) => {
+            this.feedbackService.showFail('Something went wrong');
+            return of(UserActions.registerFailure({ payload: error }))
+          }
+
           ),
           finalize(async () => {
-            await this.sharedService.managementToast(
-              'registerFeedback',
-              this.responseOK,
-              this.errorResponse
-            );
-
             if (this.responseOK) {
               this.router.navigateByUrl('home');
             }
@@ -78,21 +80,22 @@ export class UserEffects {
       ofType(UserActions.updateUser),
       exhaustMap(({ userId, user }) =>
         this.userService.updateUser(userId, user).pipe(
-          map((updatedUser) =>
-            UserActions.updateUserSuccess({
+          map((updatedUser) => {
+            this.feedbackService.showInfo('User updated');
+            return UserActions.updateUserSuccess({
               userId,
               user: updatedUser,
             })
+          }
+
           ),
-          catchError((error) =>
-            of(UserActions.updateUserFailure({ payload: error }))
+          catchError((error) => {
+            this.feedbackService.showFail('Something went wrong, could not update');
+            return of(UserActions.updateUserFailure({ payload: error }))
+          }
+
           ),
           finalize(async () => {
-            await this.sharedService.managementToast(
-              'profileFeedback',
-              this.responseOK,
-              this.errorResponse
-            );
           })
         )
       )
