@@ -24,6 +24,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastComponent } from './Shared/Components/toast/toast.component';
 import { MatCardModule } from '@angular/material/card';
+import { PostCardComponent } from './Shared/Components/post-card/post-card.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { MatCardModule } from '@angular/material/card';
         CategoryModule,
         PostModule,
         MatInputModule,
+        PostCardComponent,
         MatProgressSpinnerModule,
         MatButtonModule,
         MatToolbarModule,
